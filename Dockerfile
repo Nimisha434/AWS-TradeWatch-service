@@ -24,6 +24,7 @@ RUN ls -la
 WORKDIR /workspace/app/target
 RUN mkdir dependency && (cd dependency; jar -xf ../*.jar)
 
+
 WORKDIR /workspace/app/target/dependency
 RUN pwd
 RUN ls -la

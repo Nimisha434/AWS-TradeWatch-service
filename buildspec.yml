@@ -14,7 +14,7 @@ phases:
     # Replace with your application name
     - APPLICATION_NAME=TradeWatchlistService
     # Replace with this 435320931996.dkr.ecr.ap-south-1.amazonaws.com to your repository URI
-    - REPOSITORY_URI=815622755284.dkr.ecr.ap-southeast-1.amazonaws.com/TradeWatchlistService
+    - REPOSITORY_URI=815622755284.dkr.ecr.ap-southeast-1.amazonaws.com/tradewatchlistservice
   build: 
     commands: 
     - echo Build started on `date` 

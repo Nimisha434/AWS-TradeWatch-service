@@ -19,6 +19,9 @@ WORKDIR /workspace/app
 COPY pom.xml .
 COPY src src
 RUN mvn install -DskipTests
+RUN pwd
+RUN ls -la
+RUN cd target
 RUN ls -la
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 

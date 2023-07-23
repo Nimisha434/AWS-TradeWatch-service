@@ -12,9 +12,9 @@ phases:
     - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
     - IMAGE_TAG=${COMMIT_HASH:=latest}
     # Replace with your application name
-    - APPLICATION_NAME=tradewatchlistservice
+    - APPLICATION_NAME=TradeWatchlistService
     # Replace with this 435320931996.dkr.ecr.ap-south-1.amazonaws.com to your repository URI
-    - REPOSITORY_URI=815622755284.dkr.ecr.ap-southeast-1.amazonaws.com/tradewatchlistservice
+    - REPOSITORY_URI=815622755284.dkr.ecr.ap-southeast-1.amazonaws.com/TradeWatchlistService
   build: 
     commands: 
     - echo Build started on `date` 
@@ -28,7 +28,7 @@ phases:
     - docker push $REPOSITORY_URI:$IMAGE_TAG
     - echo Writing image definitions file... 
     # Give your container name
-    - printf '[{"name":"SpringBootAppContainer", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+    - printf '[{"name":"TradeWatchlistService", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json

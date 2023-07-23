@@ -7,7 +7,6 @@ phases:
     - eval $(aws ecr get-login-password --no-include-email --region ap-southeast-1)
     - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
     - IMAGE_TAG=${COMMIT_HASH:=latest}
-    - IMAGE_TAG=${COMMIT_HASH:=latest}
     # Replace with your application name
     - APPLICATION_NAME=tradewatchlistservice
     # Replace with this 435320931996.dkr.ecr.ap-south-1.amazonaws.com to your repository URI
@@ -22,10 +21,11 @@ phases:
     commands: 
     - echo Build completed on `date` 
     - echo pushing to repo
+    - echo repo $REPOSITORY_URI:$IMAGE_TAG
     - docker push $REPOSITORY_URI:$IMAGE_TAG
     - echo Writing image definitions file... 
     # Give your container name
-    - printf '[{"name":"TradeWatchlistService", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+    - printf '[{"name":"tradewatchlistservice", "imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json

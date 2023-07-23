@@ -23,7 +23,7 @@ RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:8-jdk-alpine
 ARG DEPENDENCY=/workspace/app/target
-RUN ls -ltr /workspace/app/target
+RUN ls -ltr
 COPY --from=build ${DEPENDENCY}/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/classes /app

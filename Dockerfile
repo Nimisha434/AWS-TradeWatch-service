@@ -22,6 +22,10 @@ RUN mvn install -DskipTests
 RUN pwd
 RUN ls -la
 RUN cd target
+RUN pwd
+RUN ls -la
+WORKDIR /workspace/app/target
+RUN pwd
 RUN ls -la
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 

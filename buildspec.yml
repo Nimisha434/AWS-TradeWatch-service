@@ -4,9 +4,9 @@ phases:
     commands:
     - echo Logging in to Amazon ECR.... 
     - aws --version
-    - aws ecr get-login-password --region ap-southeast-1
-    # Get commit hash value to tag the image
+    - eval $(aws ecr get-login-password --no-include-email --region ap-southeast-1)
     - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+    - IMAGE_TAG=${COMMIT_HASH:=latest}
     - IMAGE_TAG=${COMMIT_HASH:=latest}
     # Replace with your application name
     - APPLICATION_NAME=tradewatchlistservice

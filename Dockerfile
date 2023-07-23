@@ -21,16 +21,9 @@ COPY src src
 RUN mvn install -DskipTests
 RUN pwd
 RUN ls -la
-RUN cd target
-RUN pwd
-RUN ls -la
 WORKDIR /workspace/app/target
-RUN pwd
-RUN ls -la
 RUN mkdir dependency && (cd dependency; jar -xf ../*.jar)
 
-RUN pwd
-RUN ls -la
 WORKDIR /workspace/app/target/dependency
 RUN pwd
 RUN ls -la
@@ -40,4 +33,4 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 ENTRYPOINT ["java","-cp","app:app/lib/*","com.trade.TradeApplication"]
-EXPOSE 80
+EXPOSE 8083

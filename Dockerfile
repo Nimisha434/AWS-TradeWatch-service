@@ -27,14 +27,12 @@ RUN ls -la
 WORKDIR /workspace/app/target
 RUN pwd
 RUN ls -la
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+RUN mkdir dependency && (cd dependency; jar -xf ../*.jar)
 
-FROM openjdk:8-jdk-alpine
-ARG DEPENDENCY=/workspace/app/target
-WORKDIR /workspace/app
 RUN pwd
-RUN cd /workspace
 RUN ls -la
+FROM openjdk:8-jdk-alpine
+ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/classes /app

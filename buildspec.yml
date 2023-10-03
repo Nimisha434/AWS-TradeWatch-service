@@ -5,13 +5,13 @@ phases:
     - echo Logging in to Amazon ECR.... 
     - aws --version
     #- eval $(aws ecr get-login-password --no-include-email --region ap-southeast-1)
-    - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 815622755284.dkr.ecr.ap-southeast-1.amazonaws.com
+    - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 101614871148.dkr.ecr.ap-southeast-1.amazonaws.com
     - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
     - IMAGE_TAG=${COMMIT_HASH:=latest}
     # Replace with your application name
     - APPLICATION_NAME=tradewatchlistservice
     # Replace with this 435320931996.dkr.ecr.ap-south-1.amazonaws.com to your repository URI
-    - REPOSITORY_URI=815622755284.dkr.ecr.ap-southeast-1.amazonaws.com/tradewatchlistservice
+    - REPOSITORY_URI=101614871148.dkr.ecr.ap-southeast-1.amazonaws.com/tradewatchlistservice
   build: 
     commands: 
     - echo Build started on `date` 

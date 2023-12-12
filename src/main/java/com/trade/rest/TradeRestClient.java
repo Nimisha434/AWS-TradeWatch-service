@@ -119,7 +119,7 @@ public class TradeRestClient {
 		
 	}
     
-    @Scheduled(fixedRate = 5000)
+   // @Scheduled(fixedRate = 5000)
 	public void generateHistoricalStocks() {
     	HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));

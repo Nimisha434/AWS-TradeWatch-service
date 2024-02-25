@@ -27,10 +27,12 @@ import com.trade.dto.AllCurrency;
 import com.trade.dto.AllStocks;
 import com.trade.dto.Currency;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @CrossOrigin(origins = "*")
 @RestController
-@lombok.extern.slf4j.Slf4j
+@Slf4j
 public class TradeController {
 	
 

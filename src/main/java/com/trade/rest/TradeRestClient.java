@@ -119,7 +119,7 @@ public class TradeRestClient {
 		
 	}
     
-    @Scheduled(fixedRate = 5000)
+    //@Scheduled(fixedRate = 1000)
 	public void generateHistoricalStocks() {
     	HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -139,13 +139,13 @@ public class TradeRestClient {
 			List<Stocks> stockList = tradeUtil.stocksParser(stocks.getBody(), date.toString(), stocksTickers);
 			stocksRepository.saveAll(stockList);
 			log.info("stocklist size : {}",stockList.size());
-			try {
+			/*try {
 				Thread.sleep(60000);
 			} catch(InterruptedException e) {
 				log.error("Exception : ",e.getMessage());
-			}
+			}*/
 		});
-		
+		log.info("generatedHistoricalStocks....");
 		
 	}
 	

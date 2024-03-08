@@ -91,8 +91,10 @@ public class TradeRestClient {
 		
 		/**
 		 * Exchange rate - https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=EUR&to_currency=USD&apikey=GTL6YEQ9CZ95QT3V
+		 * 
+		 * This exchange rate url is no longer accessible.
 		 */
-		String[] currConvertList = currencyToConvert.split("\\|");
+		/*String[] currConvertList = currencyToConvert.split("\\|");
 		Arrays.asList(currConvertList).stream().forEach(a -> {
 			log.info("currency converter for currency combi : {}",a);
 			String[] currencies = a.split("\\-");
@@ -105,7 +107,7 @@ public class TradeRestClient {
 			 } catch(InterruptedException e) {
 				log.error("Exception : ",e.getMessage());
 			}
-		});
+		});*/
 	
 		/**
 		 * Stocks data consumer logic 
@@ -114,8 +116,13 @@ public class TradeRestClient {
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //ex 2022-11-04
 		ResponseEntity<String> stocks = restTemplate().exchange(stocksapiHost+date+stocksapiQueryparam, HttpMethod.GET, entity, String.class);
 		List<Stocks> stockList = tradeUtil.stocksParser(stocks.getBody(), date, stocksTickers);
-		stocksRepository.saveAll(stockList);
-		System.out.println("stocklist size : "+stockList.size());
+		
+		
+		if(stockList != null) {
+			stocksRepository.saveAll(stockList);
+			log.info("stocklist list size saved for date : {} is : {}",date, stockList.size());
+		}
+		log.info("Stocks saved in db.......");
 		
 	}
     

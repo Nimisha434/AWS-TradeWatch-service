@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -41,6 +42,12 @@ public class TradeController {
 	
 	@Autowired
 	private StocksRepository stockRepository;
+	
+	
+	@GetMapping
+	public String healthCheck() {
+		return "Ok";
+	}
 	
 	
 	@GetMapping(value="tradeRequest/currencies", produces = "application/json")
